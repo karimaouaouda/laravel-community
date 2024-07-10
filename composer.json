@@ -1,0 +1,21 @@
+{
+    "name": "karimaouaouda/laravel-community",
+    "description": "this is a simple imlementation for a laravel community plugin",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LaravelCommunity\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karim Aouaouda",
+            "email": "110925809+karimaouaouda@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
