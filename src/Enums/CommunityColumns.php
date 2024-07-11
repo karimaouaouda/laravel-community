@@ -5,6 +5,8 @@ namespace LaravelCommunity\Enums;
 
 enum CommunityColumns : string
 {
+    use BaseEnum;
+
     case FEELING = 'post-with-feeling';
 
     case IMAGE = 'post-with-image';
