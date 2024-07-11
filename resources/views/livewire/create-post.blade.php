@@ -14,33 +14,41 @@
 
         <div class="flex flex-col md:flex-row gap-4 justify-around items-center">
 
+            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('image'))
             <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
                 <i class="bi bi-card-image"></i>
                 <span class="font-semibold text-md">
                             insert image
                         </span>
             </button>
+            @endif
 
+            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('video'))
             <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
                 <i class="bi bi-play-btn"></i>
                 <span class="font-semibold text-md">
                             insert video
                         </span>
             </button>
+            @endif
 
+            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('file'))
             <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
                 <i class="bi bi-file-earmark"></i>
                 <span class="font-semibold text-md">
                             insert file
                         </span>
             </button>
+            @endif
 
+            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('feelings'))
             <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
                 <i class="bi bi-emoji-sunglasses"></i>
                 <span class="font-semibold text-md">
                             insert feeling
                         </span>
             </button>
+            @endif
         </div>
 
         <div class="my-4 flex justify-end gap-4 w-full">

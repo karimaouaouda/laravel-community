@@ -13,7 +13,7 @@ use Livewire\Livewire;
 class CommunityFeatures
 {
     protected array $features = [
-        'post-with-feelings' => false,
+        'post-with-feeling' => false,
         'post-with-image' => false,
         'post-with-video' => false,
         'post-with-multi-images' => false,
@@ -26,7 +26,7 @@ class CommunityFeatures
 
     public function postWithFeelings(): void
     {
-       $this->features['post-with-feelings'] = true;
+       $this->features['post-with-feeling'] = true;
     }
 
     public function postWithImage(bool $multiImage = false): void

@@ -7,6 +7,7 @@
  * we will let comments on top of every configuration keys
  * this will help you to better understand the configs
 */
+use LaravelCommunity\Facades\LaravelCommunityFeatures;
 
 return [
     /**
@@ -23,7 +24,10 @@ return [
     'guards' => ['web'],
 
     'features' => [
-        \LaravelCommunity\Facades\LaravelCommunityFeatures::postWithFeelings()
+        //LaravelCommunityFeatures::postWithFeelings(),
+        //LaravelCommunityFeatures::postWithFile(false),
+        //LaravelCommunityFeatures::postWithImage(false),
+        //LaravelCommunityFeatures::postWithVideo()
     ],
 
 

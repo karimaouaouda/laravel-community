@@ -20,7 +20,8 @@ class LaravelCommunityServiceProvider extends PackageServiceProvider
             ->hasViews();
     }
 
-    protected function registerComponents(){
+    protected function registerComponents(): void
+    {
         $this->app->bind('community', function(Application $app){
             return new CommunityManager($app);
         });
