@@ -4,6 +4,7 @@ namespace LaravelCommunity;
 
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\Config;
 use Livewire\Livewire;
 
 /**
@@ -45,6 +46,13 @@ class CommunityFeatures
         if($multiFile){
             $this->features['post-with-multi-files'] = true;
         }
+    }
+
+    public function enabledFeatures(): array
+    {
+       return array_filter($this->features, function($value, $key){
+           return $value;
+       }, ARRAY_FILTER_USE_BOTH);
     }
 
     public function postWithVideo(): void

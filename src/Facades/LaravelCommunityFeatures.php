@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void postWithFile(bool $multiFile = false)
  * @method static void postWithVideo()
  * @method static bool canPublishWith(string $feature)
+ * @method static array enabledFeatures()
 */
 
 class LaravelCommunityFeatures extends Facade

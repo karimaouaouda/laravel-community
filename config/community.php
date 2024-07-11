@@ -24,7 +24,7 @@ return [
     'guards' => ['web'],
 
     'features' => [
-        //LaravelCommunityFeatures::postWithFeelings(),
+        LaravelCommunityFeatures::postWithFeelings(),
         //LaravelCommunityFeatures::postWithFile(false),
         //LaravelCommunityFeatures::postWithImage(false),
         //LaravelCommunityFeatures::postWithVideo()

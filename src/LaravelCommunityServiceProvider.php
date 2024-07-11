@@ -4,6 +4,7 @@ namespace LaravelCommunity;
 
 use Illuminate\Contracts\Foundation\Application;
 use LaravelCommunity\Facades\LaravelCommunity;
+use LaravelCommunity\Facades\LaravelCommunityFeatures;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -11,13 +12,15 @@ class LaravelCommunityServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $this->registerComponents();
-        $this->bootPackage();
+
         $package
             ->name('laravel-community')
             ->hasConfigFile()
             ->hasRoute('community')
             ->hasViews();
+
+        $this->registerComponents();
+        $this->bootPackage();
     }
 
     protected function registerComponents(): void
