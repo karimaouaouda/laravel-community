@@ -20,7 +20,11 @@ return [
      * guards : the guards that we will use to retrieve users with
      *
     */
-    'guards' => ['web']
+    'guards' => ['web'],
+
+    'features' => [
+        \LaravelCommunity\Facades\LaravelCommunityFeatures::postWithFeelings()
+    ],
 
 
 
