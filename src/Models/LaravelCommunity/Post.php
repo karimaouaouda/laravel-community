@@ -2,35 +2,57 @@
 
 namespace LaravelCommunity\Models\LaravelCommunity;
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
-use LaravelCommunity\Enums\CommunityColumns;
-use LaravelCommunity\Facades\LaravelCommunityFeatures;
 
 class Post extends Model
 {
-    public function __construct(array $attributes = [])
-    {
-        $this->table = Config::get('community.posts_table', 'posts');
-
-        $this->setupFillable();
-
-        parent::__construct($attributes);
-    }
-
-    protected function setupFillable() : void
-    {
-        $cols = [];
-
-        foreach (LaravelCommunityFeatures::enabledFeatures() as $feature => $bool){
-            $cols[] = strtolower( CommunityColumns::findByValue($feature)->name );
-        }
-
-        $this->fillable = array_merge($this->fillable, $cols);
-    }
-
+    use HasFactory;
     protected $fillable = [
-        'publisher_id',
-        'text_content',
+        'user_id',
+        'text',
+        'media',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function shares(){
+        return $this->hasMany(Share::class);
+    }
+
+
+    //functions
+
+    public function like($user_id){
+        $this->likes()->create([
+           'user_id' => $user_id,
+        ]);
+    }
+
+    public function dislike($user_id){
+        $this->likes()->where('user_id', $user_id)->delete();
+    }
+
+    public function isLikedBy($user_id) : bool{
+        return $this->likes()->where('user_id', $user_id)->exists();
+    }
+
+    public function addComment(string $comment, int $user_id) : void
+    {
+        $this->comments()->create([
+           'user_id' => $user_id,
+           'comment' => $comment,
+        ]);
+    }
 }

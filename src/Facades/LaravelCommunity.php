@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Facade;
 
 class LaravelCommunity extends Facade
 {
-    public static function getFacadeAccessor()
+    public static function getFacadeAccessor(): string
     {
         return 'community';
     }
