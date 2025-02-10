@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use LaravelCommunity\Facades\LaravelCommunityFeatures;
+use LaravelCommunity\CommunityFeatures;
 
 return new class extends Migration
 {
@@ -21,23 +21,23 @@ return new class extends Migration
 
             $table->text('text_content')->nullable();
 
-            if(LaravelCommunityFeatures::canPublishWith('image')){
+            if(CommunityFeatures::canPublishWith('image')){
                 $table->string(
-                    LaravelCommunityFeatures::canPublishWith('multi-images') ? 'images' : 'image'
+                    CommunityFeatures::canPublishWith('multi-images') ? 'images' : 'image'
                 )->nullable();
             }
 
-            if(LaravelCommunityFeatures::canPublishWith('file')){
+            if(CommunityFeatures::canPublishWith('file')){
                 $table->string(
-                    LaravelCommunityFeatures::canPublishWith('multi-files') ? 'files' : 'file'
+                    CommunityFeatures::canPublishWith('multi-files') ? 'files' : 'file'
                 )->nullable();
             }
 
-            if(LaravelCommunityFeatures::canPublishWith('video')){
+            if(CommunityFeatures::canPublishWith('video')){
                 $table->string('video')->nullable();
             }
 
-            if(LaravelCommunityFeatures::canPublishWith('feeling')){
+            if(CommunityFeatures::canPublishWith('feeling')){
                 $table->string('feeling')->nullable();
             }
 

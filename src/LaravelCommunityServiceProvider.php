@@ -10,9 +10,14 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelCommunityServiceProvider extends PackageServiceProvider
 {
-    public function configurePackage(Package $package): void
+
+    public function packageRegistered(): void
     {
 
+        $this->bootPackage();
+    }
+    public function configurePackage(Package $package): void
+    {
         $package
             ->name('laravel-community')
             ->hasConfigFile()
@@ -20,21 +25,8 @@ class LaravelCommunityServiceProvider extends PackageServiceProvider
             ->runsMigrations()
             ->hasRoute('community')
             ->hasViews();
-
-        $this->registerComponents();
-        $this->bootPackage();
     }
 
-    protected function registerComponents(): void
-    {
-        $this->app->bind('community', function(Application $app){
-            return new CommunityManager($app);
-        });
-
-        $this->app->bind('community-features', function(Application $app){
-            return new CommunityFeatures($app);
-        });
-    }
 
     protected function bootPackage(): void
     {
