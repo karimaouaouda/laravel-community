@@ -12,6 +12,7 @@ class LaravelCommunityServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
+
         $this->registerComponents();
     }
 
