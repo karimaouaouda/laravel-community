@@ -2,14 +2,13 @@
 
 namespace LaravelCommunity\Livewire\Community;
 
-use Illuminate\Container\Container;
 use Livewire\Component;
 
 class Post extends Component
 {
-    public ?\App\Models\Community\Post $post;
+    public ?\LaravelCommunity\Models\LaravelCommunity\Post $post;
 
-    public function mount(\App\Models\Community\Post $post){
+    public function mount(\LaravelCommunity\Models\LaravelCommunity\Post $post){
         $this->post = $post;
     }
 

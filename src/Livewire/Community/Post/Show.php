@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Community\Post;
 
-use App\Models\Community\Post;
+use LaravelCommunity\Models\LaravelCommunity\Post;
 use Livewire\Component;
 use function PHPUnit\Framework\isEmpty;
 

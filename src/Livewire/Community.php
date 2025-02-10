@@ -3,7 +3,7 @@
 namespace LaravelCommunity\Livewire;
 
 
-use App\Models\Community\Post;
+use LaravelCommunity\Models\LaravelCommunity\Post;
 use Livewire\Component;
 
 class Community extends Component

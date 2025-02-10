@@ -11,7 +11,7 @@ class Post extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public \App\Models\Community\Post $post)
+    public function __construct(public \LaravelCommunity\Models\LaravelCommunity\Post $post)
     {
 
     }
