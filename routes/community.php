@@ -7,4 +7,4 @@ Route::middleware('web')
     ->prefix('community')
     ->group(function(){
         Route::get('/', [\LaravelCommunity\Http\MainController::class, 'index'])->name('community.index');
-    });
+

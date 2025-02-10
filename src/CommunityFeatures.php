@@ -13,54 +13,37 @@ use Livewire\Livewire;
 
 class CommunityFeatures
 {
-    protected array $features = [
-        'post-with-feeling' => false,
-        'post-with-image' => false,
-        'post-with-video' => false,
-        'post-with-multi-images' => false,
-        'post-with-file' => false,
-        'post-with-multi-files' => false,
-    ];
    public function __construct(protected Application $app)
     {
     }
 
-    public function postWithFeelings(): void
+    public static function postWithFeelings(): string
     {
-       $this->features['post-with-feeling'] = true;
+       return 'feeling';
     }
 
-    public function postWithImage(bool $multiImage = false): void
+    public static function postWithImage(): string
     {
-        $this->features['post-with-image'] = true;
-
-        if($multiImage){
-            $this->features['post-with-multi-images'] = true;
-        }
+        return "image";
     }
 
-    public function postWithFile(bool $multiFile = false): void
+    public static function postWithFile(): string
     {
-        $this->features['post-with-file'] = true;
-
-        if($multiFile){
-            $this->features['post-with-multi-files'] = true;
-        }
+        return 'file';
     }
 
-    public function enabledFeatures(): array
+    public static function enabledFeatures(): array
     {
-       return array_filter($this->features, function($value, $key){
-           return $value;
-       }, ARRAY_FILTER_USE_BOTH);
+      return Config::get('community.features');
     }
 
-    public function postWithVideo(): void
+    public static function postWithVideo(): string
     {
-        $this->features['post-with-video'] = true;
+        return 'video';
     }
 
-    public function canPublishWith(string $feature){
-       return $this->features['post-with-' . $feature];
+    public static function canPublishWith(string $feature): bool
+    {
+       return isset(Config::get('community.features', [])[$feature]);
     }
 }
