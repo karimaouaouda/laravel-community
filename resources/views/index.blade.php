@@ -37,7 +37,7 @@
             </div>
             {{-- end heading --}}
 
-            @livewire('create-post')
+            <livewire::community::livewire.create-post/>
 
         </div>
 

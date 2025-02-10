@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('web')
+    ->prefix('community')
     ->group(function(){
-        Route::get('/hello', function(){
-            new \LaravelCommunity\Models\LaravelCommunity\Post();
-            return view('community::index');
-        });
+        Route::get('/', [\LaravelCommunity\Http\MainController::class, 'index'])->name('community.index');
     });

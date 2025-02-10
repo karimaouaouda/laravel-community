@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table(Config::get('community.posts_table', 'posts'), function (Blueprint $table) {
-
+        Schema::create(Config::get('community.posts_table', 'posts'), function (Blueprint $table) {
+            $table->id();
             $table->foreignId('publisher_id')
                     ->references('id')
-                    ->on(\App\Models\User::class);
+                    ->on('users');
 
             $table->text('text_content')->nullable();
 
@@ -49,8 +49,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists(Config::get('community.posts_table', 'posts'));
     }
 };

@@ -25,10 +25,10 @@ class CommunityManager
     }
 
 
-    public function registerLivewireComponents(): void
+    public function registerLivewireComponents(string $prefix = "community"): void
     {
        foreach ($this->livewireComponents() as $key => $class){
-           Livewire::component($key, $class);
+           Livewire::component("{$prefix}::{$key}", $class);
        }
     }
 }

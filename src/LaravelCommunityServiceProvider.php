@@ -16,6 +16,8 @@ class LaravelCommunityServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-community')
             ->hasConfigFile()
+            ->discoversMigrations(__DIR__.'/../database/migrations')
+            ->runsMigrations()
             ->hasRoute('community')
             ->hasViews();
 
