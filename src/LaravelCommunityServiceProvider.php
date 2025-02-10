@@ -2,33 +2,43 @@
 
 namespace LaravelCommunity;
 
-use LaravelCommunity\Livewire\Community\Post;
-use Livewire\Livewire;
+use Illuminate\Contracts\Foundation\Application;
+use LaravelCommunity\Facades\LaravelCommunity;
+use LaravelCommunity\Facades\LaravelCommunityFeatures;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelCommunityServiceProvider extends PackageServiceProvider
 {
-
     public function configurePackage(Package $package): void
     {
+
         $package
             ->name('laravel-community')
             ->hasConfigFile()
-            ->hasViews('community')
-            ->hasRoute('community');
+            ->hasRoute('community')
+            ->hasViews();
 
-        $this->registerLivewireComponents(
-            __DIR__ . '/livewire-components.php',
-            'community'
-        );
+        $this->registerComponents();
+        $this->bootPackage();
     }
 
-    private function registerLivewireComponents($components_file_path = __DIR__ . '/components.php', string $prefix = 'community') : void
+    protected function registerComponents(): void
     {
-        $components = require $components_file_path;
-        foreach ($components as $name => $component) {
-            Livewire::component("{$prefix}::{$name}", $component);
-        }
+        $this->app->bind('community', function(Application $app){
+            return new CommunityManager($app);
+        });
+
+        $this->app->bind('community-features', function(Application $app){
+            return new CommunityFeatures($app);
+        });
     }
+
+    protected function bootPackage(): void
+    {
+        LaravelCommunity::registerLivewireComponents();
+    }
+
+
+
 }

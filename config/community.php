@@ -7,6 +7,7 @@
  * we will let comments on top of every configuration keys
  * this will help you to better understand the configs
 */
+use LaravelCommunity\Facades\LaravelCommunityFeatures;
 
 return [
     /**
@@ -20,7 +21,14 @@ return [
      * guards : the guards that we will use to retrieve users with
      *
     */
-    'guards' => ['web']
+    'guards' => ['web'],
+
+    'features' => [
+        LaravelCommunityFeatures::postWithFeelings(),
+        //LaravelCommunityFeatures::postWithFile(false),
+        //LaravelCommunityFeatures::postWithImage(false),
+        //LaravelCommunityFeatures::postWithVideo()
+    ],
 
 
 

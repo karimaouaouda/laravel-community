@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 
-
-Route::prefix('community')
-    ->middleware('web')
+Route::middleware('web')
     ->group(function(){
-    Route::controller(\LaravelCommunity\Http\MainController::class)
-        ->group(function(){
-            Route::get('/', 'index');
+        Route::get('/hello', function(){
+            new \LaravelCommunity\Models\LaravelCommunity\Post();
+            return view('community::index');
         });
-});
+    });
