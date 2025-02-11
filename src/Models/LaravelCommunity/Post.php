@@ -10,13 +10,12 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'text',
-        'media',
+        'publisher_id',
+        'text_content',
     ];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'publisher_id');
     }
 
     public function likes(){

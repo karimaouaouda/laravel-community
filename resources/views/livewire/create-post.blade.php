@@ -1,54 +1,44 @@
 <div class="body flex flex-col gap-4">
-    <form wire:submit="publish" method="post">
-        <div x-init="empty = $el.innerText == ''" class="text-input" x-data="{placeholder: 'tao something...', empty : true}">
-            <p
-                :class="{
-                            'text-gray-500' : empty
+    <form wire:submit="publish" method="post" >
+        <div class="bg-slate-700/30 shadow rounded-md p-2">
+            <div x-init="empty = $el.innerText == ''" class="text-input" x-data="{placeholder: 'tap something...', empty : true}">
+                <textarea
+                    wire:model="data.text_content"
+                    :class="{
+                            'text-gray-100' : empty
                         }"
-                name="d"
-                @focus="empty != false?$el.innerText = '' : false ; empty=false"
-                @blur="val=$el.innerText;empty = $el.innerText.trim() == ''"
-                id="d" rows="1" contenteditable="true" role="textbox" placeholder="post content"
-                class="p-2 border-0 border-l focus:ring-0 h-fit  outline-none" resize="false" x-text="empty?placeholder:$el.innerText"></p>
-        </div>
+                    name="d"
+                    id="d"  placeholder="post content"
+                    class="p-2 w-full min-h-16 max-h-40 placeholder:text-slate-500 outline-none focus:ring-0 bg-transparent border-none" aria-placeholder="hello there" resize="false"></textarea>
+            </div>
 
-        <div class="flex flex-col md:flex-row gap-4 justify-around items-center">
+            <div x-data="{progress : false, uploading : false}"
+                 x-on:livewire-upload-start="uploading = true"
+                 x-on:livewire-upload-finish="uploading = false"
+                 x-on:livewire-upload-progress="progress = $event.detail.progress"
+                 class="flex px-3 justify-start space-x-3 items-center">
 
-            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('image'))
-            <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
-                <i class="bi bi-card-image"></i>
-                <span class="font-semibold text-md">
-                            insert image
-                        </span>
-            </button>
-            @endif
+                @if(\LaravelCommunity\CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::IMAGE))
+                    <input id="image" wire:model="data.image" type="file" class="hidden" />
+                    <div x-show="uploading">
+                        <progress max="100" x-bind:value="progress"></progress>
+                    </div>
+                    <i @click="$el.parentElement.querySelector('input#image').click()" class="bi bi-card-image text-xl text-slate-500 cursor-pointer"></i>
+                @endif
 
-            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('video'))
-            <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
-                <i class="bi bi-play-btn"></i>
-                <span class="font-semibold text-md">
-                            insert video
-                        </span>
-            </button>
-            @endif
+                @if(\LaravelCommunity\CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::VIDEO))
+                        <i class="bi bi-play-btn text-xl text-slate-500 cursor-pointer"></i>
+                @endif
 
-            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('file'))
-            <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
-                <i class="bi bi-file-earmark"></i>
-                <span class="font-semibold text-md">
-                            insert file
-                        </span>
-            </button>
-            @endif
+                @if(\LaravelCommunity\CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::FILE))
+                        <i class="bi bi-file-earmark text-xl text-slate-500 cursor-pointer"></i>
 
-            @if(\LaravelCommunity\Facades\LaravelCommunityFeatures::canPublishWith('feelings'))
-            <button class="p-2 w-full md:w-auto flex-1 bg-gray-200 justify-center text-slate-700 shadow shadow-md rounded-md hover:bg-gray-300 flex items-center gap-2">
-                <i class="bi bi-emoji-sunglasses"></i>
-                <span class="font-semibold text-md">
-                            insert feeling
-                        </span>
-            </button>
-            @endif
+                @endif
+
+                @if(\LaravelCommunity\CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::FEELING))
+                        <i class="bi bi-emoji-sunglasses text-xl text-slate-500 cursor-pointer"></i>
+                @endif
+            </div>
         </div>
 
         <div class="my-4 flex justify-end gap-4 w-full">

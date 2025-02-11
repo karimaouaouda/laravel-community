@@ -17,7 +17,7 @@
     </div>
 
     <p class="post-text mt-4 text-white text-sm">
-        {{ $post->text }}
+        {{ $post->text_content ?? 'def' }}
     </p>
 
     <div class="media-box rounded-lg w-full mt-2 overflow-hidden">

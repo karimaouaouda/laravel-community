@@ -31,6 +31,8 @@
             </a>
 
         </div>
+
+        <livewire:community::create-post/>
         @foreach($posts as $post)
            <livewire:community::post :key="$post->id" :post="$post"/>
         @endforeach

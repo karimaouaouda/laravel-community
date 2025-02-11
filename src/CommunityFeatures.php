@@ -5,6 +5,7 @@ namespace LaravelCommunity;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Config;
+use LaravelCommunity\Enums\PostFeatures;
 use Livewire\Livewire;
 
 /**
@@ -19,17 +20,17 @@ class CommunityFeatures
 
     public static function postWithFeelings(): string
     {
-       return 'feeling';
+       return PostFeatures::FEELING->value;
     }
 
     public static function postWithImage(): string
     {
-        return "image";
+        return PostFeatures::IMAGE->value;
     }
 
     public static function postWithFile(): string
     {
-        return 'file';
+        return PostFeatures::FILE->value;
     }
 
     public static function enabledFeatures(): array
@@ -39,11 +40,11 @@ class CommunityFeatures
 
     public static function postWithVideo(): string
     {
-        return 'video';
+        return PostFeatures::VIDEO->value;
     }
 
-    public static function canPublishWith(string $feature): bool
+    public static function canPublishWith(PostFeatures $feature): bool
     {
-       return isset(Config::get('community.features', [])[$feature]);
+        return  array_search($feature->value, Config::get('community.features', [])) !== false;
     }
 }

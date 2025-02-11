@@ -19,27 +19,27 @@ return new class extends Migration
                     ->references('id')
                     ->on('users');
 
+            $table->string('storage_disk')->default('public');
+
             $table->text('text_content')->nullable();
 
-            if(CommunityFeatures::canPublishWith('image')){
-                $table->string(
-                    CommunityFeatures::canPublishWith('multi-images') ? 'images' : 'image'
-                )->nullable();
+            if(CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::IMAGE)){
+                $table->string('image')->nullable();
             }
 
-            if(CommunityFeatures::canPublishWith('file')){
-                $table->string(
-                    CommunityFeatures::canPublishWith('multi-files') ? 'files' : 'file'
-                )->nullable();
+            if(CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::FILE)){
+                $table->string('file')->nullable();
             }
 
-            if(CommunityFeatures::canPublishWith('video')){
+            if(CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::VIDEO)){
                 $table->string('video')->nullable();
             }
 
-            if(CommunityFeatures::canPublishWith('feeling')){
+            if(CommunityFeatures::canPublishWith(\LaravelCommunity\Enums\PostFeatures::FEELING)){
                 $table->string('feeling')->nullable();
             }
+
+            $table->timestamps();
 
         });
     }

@@ -28,6 +28,7 @@ class Post extends Component
     public function render()
     {
         $isLiked = auth()->check() && $this->post->isLikedBy(auth()->id());
+
         return view('community::components.post', [
             'post' => $this->post,
             'isLiked' => $isLiked

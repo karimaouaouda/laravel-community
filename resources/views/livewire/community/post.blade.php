@@ -17,7 +17,7 @@
     </div>
 
     <p class="post-text mt-4 text-white text-sm">
-        {{ $post->text }}
+        {{ $post->text_content ?? 'no text' }}
     </p>
 
     <div class="media-box rounded-lg w-full mt-2 overflow-hidden">
@@ -31,7 +31,7 @@
                 wire:click="like('{{$post->id}}')"
                 class="flex items-center flex-col mx-2"
                 type="button">
-                <i 
+                <i
                     class="bi bi-heart{{$isLiked ? '-fill' : ''}} text-xl text-white"></i>
                 <span class="-mt-1 text-white text-sm">
                     {{ $post->likes()->count() }}
