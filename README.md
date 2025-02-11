@@ -16,6 +16,7 @@ laravel new App && cd App
 composer require karimaouaouda/laravel-community
 ````
 
+
 3 - **optionally**, you can publish the configuration file and configure you features :
 ````shell
 php artisan vendor:publish 
